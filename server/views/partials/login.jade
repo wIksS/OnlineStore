@@ -1,0 +1,34 @@
+﻿div.container
+    div.well
+        form.form-horizontal(name="loginForm")
+            fieldset
+                legend 
+                    | Log In
+                div.form-group
+                    label.col-lg-2.control-label(for="username")
+                        | Username
+                    div.col-lg-10
+                        input.form-control#username(type="text", ng-model="user.username", placeholder="Username")
+               div.form-group
+                    label.col-lg-2.control-label(for="password")
+                        | Password
+                    div.col-lg-10
+                        input.form-control#password(type="text", ng-model="user.password", placeholder="Password")
+               div.form-group
+                    div.col-lg-10.col-lg-offset-2
+                        a.btn.btn-default(href="/")
+                            | Cancel
+                        button.btn.btn-primary#btn-login(ng-click="login(user, loginForm)")
+                            | Login
+        //ul.nav.navbar-nav.navbar-right(ng-show="identity.isAuthenticated()")
+            li.dropdown
+                a.dropdown-toggle(href="", data-toggle="dropdown")
+                    | {{ identity.currentUser().firstName + " " + identity.currentUser().lastName }}
+                    span.caret
+                ul.dropdown-menu
+                    li(ng-show="identity.isAdmin()")
+                        a(href="#/admin/users") Users
+                    li(ng-show="identity.isAuthenticated()")
+                        a(href="#/profile") Profile
+                    li
+                        a(href="#", ng-click="logout()") Sign out

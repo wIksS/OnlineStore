@@ -2,11 +2,42 @@ doctype
 html
     head
         title Online Store
-        link(rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css")
+        link(rel="stylesheet" href="/css/bootstrap.min.css")
+        link(rel="stylesheet" href="/css/bootstrap-theme.min.css")
+        link(rel="stylesheet" href="/css/toastr.min.css")
         link(rel="stylesheet" href="/css/site.css")
     body(ng-app="app")
-        h1 Hi from Node!
-        
+        div#wrapper
+            header
+                nav
+                    div.navbar.navbar-default
+                        div.container
+                            div.navbar-header
+                                a.navbar-brand(href="#/")
+                                    | *Name* Online Shop
+                                button.navbar-toggle(type="button", data-toggle="collapse", data-target="#navbar-main")
+                                    //span.icon-bar
+                            div.navbar-collapse.collapse.navbar-responsive-collapse
+                                ul.nav.navbar-nav
+                                    li
+                                        a(href="#/")
+                                            | Home
+                                ul.nav.navbar-nav.navbar-right(ng-controller="LoginCtrl")
+                                    li(ng-show="loggedIn")
+                                        a(href="#/login")
+                                            | Log In
+                                    li(ng-show="loggedIn")
+                                        a(href="#/register")
+                                            | Register
+                                    li(ng-hide="loggedIn")
+                                        a(href="#/profile")
+                                            | Hello, {{ identity.getCurrentUser().userName }}
+                                    li(ng-hide="loggedIn", ng-click="logout()")
+                                        a(href="#/")
+                                            | Log Out
+
+        //h1 Hi from Node!
+
         block content
         
         include scripts
