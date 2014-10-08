@@ -16,18 +16,18 @@ userSchema.virtual("password")
     .set(function(pass){
         this.salt = makeSalt();
         var sha1 = crypto.createHash("sha1");
-        sha1.write(pass+salt);
-        this.hashedPassword = sha1.read();
+        sha1.update(pass+this.salt);
+        this.hashedPassword =  sha1.digest('hex');
     });
 userSchema.method({
     authenticate:function(pass){
         var sha1 = crypto.createHash("sha1");
-        sha1.write(pass+salt);
-        return this.hashedPassword === sha1.read();
+        sha1.update(pass+this.salt);
+        return this.hashedPassword === sha1.digest('hex');
     }
 });
-var User = mongoose.model("USER",userSchema);
+var User = mongoose.model("User",userSchema);
 //TODO Create admin accounts
 function makeSalt(){
-    return Math.round(Math.random());
+    return Math.round(Math.random()*1000000000000);
 }

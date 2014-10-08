@@ -1,6 +1,9 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
+    passport = require("passport"),
+    cookieParser = require('cookie-parser'),
     mongoose = require('mongoose');
+
 
 var env = process.env.NODE_ENV || 'development';
 var port = 3030;
@@ -9,9 +12,13 @@ var app = express();
 
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/server/views');
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session({ secret: 'this is the store secret' }));
 app.use(express.static(__dirname + '/public'));
 
 mongoose.connect('mongodb://localhost/onlinestore');
@@ -22,10 +29,19 @@ db.once('open', function (err) {
         console.log('Database could not be opened: ' + err);
         return;
     }
-    
+
+    dbDependent();
     console.log('Database up and running...');
 });
-
+function dbDependent(){
+    require("./server/models/User");
+    require("./server/config/passport");
+    controllers = require("./server/controllers/index");
+    auth = require("./server/config/auth");
+    app.post("/register",controllers.users.createUser);
+    app.post("/user",auth.login);
+    app.put("/user",auth.logout);
+}
 db.on('error', function (err) {
     console.log('Database error: ' + err);
 });
@@ -63,3 +79,4 @@ app.get('*', function(req, res) {
 app.listen(port);
 
 console.log('Server running on port: ' + port);
+
