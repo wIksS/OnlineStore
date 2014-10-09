@@ -25,7 +25,7 @@ app.factory('identity', function($cookieStore, UsersResource){
             return !!this.getCurrentUser();
         },
         isAuthorizedForRole: function (role) {
-            return !!this.getCurrentUser() && this.getCurrentUser().roles.indexOf(role) > -1;
+            return !!this.getCurrentUser() && this.getCurrentUser().role===role;
         },
         isAdmin: function () {
             return this.isAuthorizedForRole('admin');
