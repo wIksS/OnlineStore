@@ -14,6 +14,7 @@ var userSchema = new mongoose.Schema({
     hashedPassword: { type: String, default: '', require: "{PATH} is required!" },
     salt: { type: String, default: '' , require: "{PATH} is required!"}
 });
+
 userSchema.virtual("password")
     .set(function(pass){
         this.salt = makeSalt();

@@ -16,6 +16,6 @@
             $scope.user.billing = user.billing;
             notifier.success('Profile updated successfully!');
             $location.path('/');
-        })
+        });
     }
 });
