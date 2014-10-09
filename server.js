@@ -2,7 +2,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     passport = require("passport"),
     cookieParser = require('cookie-parser'),
-    session = require("express-session"),
+    session = require("cookie-session"),
     mongoose = require('mongoose');
 var controllers;
 
@@ -18,7 +18,6 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(cookieParser());
-app.use(passport.initialize());
 
 app.use(session({
     name: "connect.sid",
@@ -29,6 +28,7 @@ app.use(session({
     { secure: true }
     }
 ));
+app.use(passport.initialize());
 app.use(passport.session(
     { secret: 'this is the store secret' }));
 app.use(express.static(__dirname + '/public'));
@@ -88,15 +88,9 @@ app.get('/products',function(req,res){
     });
 });
 
-app.get('/partials/:partialName', function (req, res) {
-    res.render('partials/' + req.params.partialName);
-});
 
-app.get('*', function(req, res) {
-    res.render('index', {
-        message: messageFromDb
-    });
-});
+
+
 
 app.post('/create-item',auth.isAuthenticated,
     auth.isInRole("admin"),
@@ -106,14 +100,22 @@ app.post('/create-item',auth.isAuthenticated,
         controllers.prodcuts.createProduct(res.body)
         res.end();
     });
-app.get('/create-item',auth.isAuthenticated,
+app.get('/create-item',
     auth.isInRole("admin"),
     //TODO where must I move this function ?
     function(req,res,next){
-        res.sendfile("./server/view/partials/create-item.html")
+        res.sendfile("./server/views/partials/create-item.html")
     });
 
+app.get('/partials/:partialName', function (req, res) {
+    res.render('partials/' + req.params.partialName);
+});
 
+app.get('*', function(req, res) {
+    res.render('index', {
+        message: messageFromDb
+    });
+});
 app.listen(port);
 
 console.log('Server running on port: ' + port);

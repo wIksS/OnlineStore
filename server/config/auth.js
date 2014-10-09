@@ -14,7 +14,7 @@ module.exports = {
                 if (err) return next(err);
                 res.send({success: true});
             });
-        });
+        },{session:true});
 
         auth(req, res, next);
     },
@@ -23,6 +23,7 @@ module.exports = {
         res.end();
     },
     isAuthenticated: function(req, res, next) {
+        console.log("try authenticate  : " + req.isAuthenticated()+ " session=>> "+ JSON.stringify(req.session));
         if (!req.isAuthenticated()) {
             res.status(403);
             res.end();
@@ -33,6 +34,8 @@ module.exports = {
     },
     isInRole: function(role) {
         return function(req, res, next) {
+            console.log("Checking role");
+            console.log(req.user);
             if (req.isAuthenticated() && req.user.role === role) {
                 next();
             }

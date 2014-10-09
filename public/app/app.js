@@ -44,7 +44,9 @@ app.config(function ($routeProvider) {
         templateUrl: '/partials/users-list',
         controller: 'UserListCtrl',
         resolve: routeUserChecks.adminRole
-    })
+    }).when('/create-item', {
+        templateUrl: '/create-item'
+     })
     .otherwise({ redirectTo: '/' });
 });
 

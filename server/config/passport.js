@@ -32,7 +32,7 @@ var User = require("mongoose").model("User");
         }
     });
 
-    passport.deserializeUser(function(id, done) {
+    passport.deserializeUser (function(id, done) {
         console.log("User de serialized.");
         User.findOne({_id: id}).exec(function(err, user) {
             if (err) {
