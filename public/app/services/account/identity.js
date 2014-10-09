@@ -29,6 +29,7 @@ app.factory('identity', function($cookieStore, UsersResource){
         },
         isAdmin: function () {
             return this.isAuthorizedForRole('admin');
-        }
+        },
+        currentUser: currentUser
     }
 });

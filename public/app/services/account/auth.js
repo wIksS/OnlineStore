@@ -17,11 +17,13 @@ app.factory('auth', function ($q, $http, identity, UsersResource) {
             var deferred = $q.defer();
 
             var updatedUser = new UsersResource(user);
-            updatedUser._id =  identity.currentUser._id;
+            updatedUser._id =  identity.getCurrentUser()._id;
 
             updatedUser.$update().then(function () {
                 identity.currentUser.firstName = updatedUser.firstName;
                 identity.currentUser.lastName = updatedUser.lastName;
+                identity.currentUser.address = updatedUser.address;
+                identity.currentUser.billing = updatedUser.billing;
                 deferred.resolve;
             }, function (response) {
                 deferred.reject(response);
