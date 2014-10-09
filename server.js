@@ -65,6 +65,11 @@ function dbDependent(){
     app.get('/products',
         controllers.products.getAllProducts
     );
+    app.get('*', function(req, res) {
+        res.render('index', {
+            message: messageFromDb
+        });
+    });
 }
 db.on('error', function (err) {
     console.log('Database error: ' + err);
@@ -115,11 +120,7 @@ app.get('/partials/:partialName', function (req, res) {
     res.render('partials/' + req.params.partialName);
 });
 
-app.get('*', function(req, res) {
-    res.render('index', {
-        message: messageFromDb
-    });
-});
+
 app.listen(port);
 
 console.log('Server running on port: ' + port);

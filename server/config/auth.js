@@ -29,7 +29,6 @@ module.exports = {
         res.end();
     },
     isAuthenticated: function(req, res, next) {
-        console.log("try authenticate  : " + req.isAuthenticated()+ " session=>> "+ JSON.stringify(req.session));
         if (!req.isAuthenticated()) {
             res.status(403);
             res.end();

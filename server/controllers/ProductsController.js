@@ -24,7 +24,8 @@ module.exports = {
     },
     getAllProducts:function(req,res,next){
         Product.find({}).exec(function(err,data){
-            res.render(__dirname + "server/views/partials/products",{products:data});
+            console.log(data);
+            res.render(__dirname + "/../views/partials/products",{products:data});
         })
     }
 };
