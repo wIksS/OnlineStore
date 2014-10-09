@@ -105,7 +105,7 @@ app.get('/create-item',
     auth.isInRole("admin"),
     //TODO where must I move this function ?
     function(req,res,next){
-        res.sendFile("./server/views/partials/create-item.html")
+        res.sendFile(__dirname +"/server/views/partials/create-item.html")
     });
 
 app.get('/partials/:partialName', function (req, res) {
