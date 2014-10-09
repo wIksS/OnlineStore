@@ -1,0 +1,50 @@
+<form action="" method="post" class="form-horizontal">
+    <fieldset>
+
+
+        <legend>Create product</legend>
+        <div class="form-group">
+            <label for="product-name" class="col-lg-2 control-label">Product name</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="product-name" name="name" placeholder="Product name">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="product-description" class="col-lg-2 control-label">Product description</label>
+            <div class="col-lg-10">
+                <textarea class="form-control" rows="3" name="description" id="product-description"></textarea>
+                <span class="help-block">Please provide description for the item.</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="product-quantity" class="col-lg-2 control-label">Available in stock</label>
+            <div class="col-lg-10">
+                <input type="number" class="form-control" id="product-quantity" name="quantity">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="product-colors" class="col-lg-2 control-label">Available product colors</label>
+            <div class="col-lg-10">
+                <textarea class="form-control" rows="2" name="colors" id="product-colors"></textarea>
+                <span class="help-block">Please separate with "," and don't use spaces..</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="product-price" class="col-lg-2 control-label">Product price</label>
+            <div class="col-lg-10">
+                <input type="number" class="form-control" id="product-price" name="price">
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" class="btn btn-primary">Create product</button>
+            </div>
+        </div>
+    </fieldset>
+</form>

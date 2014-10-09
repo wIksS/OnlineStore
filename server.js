@@ -4,7 +4,7 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     session = require("express-session"),
     mongoose = require('mongoose');
-
+var controllers;
 
 var env = process.env.NODE_ENV || 'development';
 var port = 3030;
@@ -45,12 +45,14 @@ db.once('open', function (err) {
     dbDependent();
     console.log('Database up and running...');
 });
+auth = require("./server/config/auth");
+
 function dbDependent(){
     require("./server/models/Product");
     require("./server/models/User");
     require("./server/config/passport");
     controllers = require("./server/controllers/index");
-    auth = require("./server/config/auth");
+    //auth = require("./server/config/auth");
     app.post("/register",controllers.users.createUser);
     app.post("/user",auth.login);
     app.put("/user",auth.logout);
@@ -88,6 +90,22 @@ app.get('*', function(req, res) {
         message: messageFromDb
     });
 });
+
+app.post('/create-item',auth.isAuthenticated,
+    auth.isInRole("admin"),
+    //TODO where must I move this function ?
+    function(req,res,next){
+        req.body.colors=req.body.colors.split(",");
+        controllers.prodcuts.createProduct(res.body)
+        res.end();
+    });
+app.get('/create-item',auth.isAuthenticated,
+    auth.isInRole("admin"),
+    //TODO where must I move this function ?
+    function(req,res,next){
+        res.sendfile("./server/view/partials/create-item.html")
+    });
+
 
 app.listen(port);
 
