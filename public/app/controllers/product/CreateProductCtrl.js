@@ -1,10 +1,16 @@
-app.controller('CreateProductCtrl', function CreateProductCtrl($scope, $location, productResource) {
-    $scope.createProduct = function(product) {
-        console.log('in func');
-        productResource.create(product)
-            .then(function (data) {
-                console.log('in promise');
-                $location.path('/');
-            })
+app.controller('CreateProductCtrl', function CreateProductCtrl($scope, $location, $http, productResource, formDataObject) {
+    $scope.createProduct = function (product, picture) {
+        product.picture = picture;
+        return $http({
+            method: 'POST',
+            url: '/create-item',
+            headers: {
+                'Content-Type': undefined
+            },
+            data: product,
+            transformRequest: formDataObject,
+        }).success(function() {
+            $location.path('/');
+        });
     };
 });

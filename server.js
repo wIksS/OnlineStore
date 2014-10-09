@@ -3,7 +3,8 @@ var express = require('express'),
     passport = require("passport"),
     cookieParser = require('cookie-parser'),
     session = require("cookie-session"),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    busboy = require('connect-busboy');
 var controllers;
 
 var env = process.env.NODE_ENV || 'development';
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(busboy({ immediate: false }));
 app.use(cookieParser());
 
 app.use(session({
@@ -53,17 +55,20 @@ db.once('open', function (err) {
 });
 auth = require("./server/config/auth");
 
-function dbDependent(){
+function dbDependent() {
     require("./server/models/Product");
     require("./server/models/User");
     require("./server/config/passport");
     controllers = require("./server/controllers/index");
     //auth = require("./server/config/auth");
-    app.post("/register",controllers.users.createUser);
-    app.post("/user",auth.login);
-    app.put("/user",auth.logout);
+    app.post("/register", controllers.users.createUser);
+    app.post("/user", auth.login);
+    app.put("/user", auth.logout);
     app.get('/products',
         controllers.products.getAllProducts
+    );
+    app.delete('/products/:id',
+        controllers.products.deleteProduct
     );
     app.get('/admin',
         controllers.products.getAdminProducts
@@ -102,8 +107,6 @@ app.post('/create-item',auth.isAuthenticated,
     //auth.isInRole("admin"),
     //TODO where must I move this function ?
     function(req,res,next){
-        req.body.colors=req.body.colors.split(",");
-        console.log(req.body);
         controllers.products.createProduct(req,res,next)
         res.end();
     }
