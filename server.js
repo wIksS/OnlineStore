@@ -62,6 +62,9 @@ function dbDependent(){
     app.post("/register",controllers.users.createUser);
     app.post("/user",auth.login);
     app.put("/user",auth.logout);
+    app.get('/products',
+        controllers.products.getAllProducts
+    );
 }
 db.on('error', function (err) {
     console.log('Database error: ' + err);
