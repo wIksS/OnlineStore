@@ -8,22 +8,22 @@
                     label.col-lg-2.control-label(for="first-name")
                         | First name
                     div.col-lg-10
-                        input.form-control#first-name(type="text", ng-model="user.firstName", placeholder="First name", required)
+                        input.form-control#first-name(type="text", ng-model="user.firstName", name="firstName", placeholder="First name", required)
                div.form-group
                     label.col-lg-2.control-label(for="last-name")
                         | Last name
                     div.col-lg-10
-                        input.form-control#last-name(type="text", ng-model="user.lastName", placeholder="Last name", required)
+                        input.form-control#last-name(type="text", ng-model="user.lastName", name="lastName", placeholder="Last name", required)
                div.form-group
                     label.col-lg-2.control-label(for="username")
                         | Username
                     div.col-lg-10
-                        input.form-control#username(type="text", ng-model="user.userName", placeholder="Username", required)
+                        input.form-control#username(type="text", ng-model="user.userName", name="userName", placeholder="Username", required)
                div.form-group
                     label.col-lg-2.control-label(for="password")
                         | Password
                     div.col-lg-10
-                        input.form-control#password(type="text", ng-model="user.password", placeholder="Password", required)
+                        input.form-control#password(type="password", ng-model="user.password", name="password", placeholder="Password", required)
                 div.form-group
                     div.col-lg-10.col-lg-offset-2
                         a.btn.btn-default(href="/")

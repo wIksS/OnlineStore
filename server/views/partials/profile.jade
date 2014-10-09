@@ -7,17 +7,17 @@
                     label.col-md-2.control-label(for="first-name") 
                         | First name
                     div.col-md-10
-                        input#first-name.form-control(type="text", placeholder="First name", ng-model="user.firstName", required)
+                        input#first-name.form-control(type="text", placeholder="First name", ng-model="user.firstName", name="firstName", required)
                 div.form-group
                     label.col-md-2.control-label(for="last-name") 
                         | Last name
                     div.col-md-10
-                        input#last-name.form-control(type="text", placeholder="Last name", ng-model="user.lastName", required)
+                        input#last-name.form-control(type="text", placeholder="Last name", ng-model="user.lastName", name="lastName", required)
                 div.form-group
                     label.col-md-2.control-label(for="password") 
                         | Password
                     div.col-md-10
-                        input#password.form-control(type="password", placeholder="Password", ng-model="user.password")
+                        input#password.form-control(type="password", placeholder="Password", name="password", ng-model="user.password")
                 div.form-group
                     div.col-lg-10.col-lg-offset-2
                         button.btn.btn-primary(ng-click="update(user)", ng-disabled="profileForm.$invalid") 
