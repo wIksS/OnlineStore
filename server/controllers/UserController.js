@@ -17,7 +17,7 @@ module.exports = {
                 res.status(400);
                 res.end();
             } else {
-				res.redirect('#/login');
+				res.redirect('/#/login');
                 res.end();
             }
         });

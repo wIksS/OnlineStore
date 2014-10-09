@@ -1,5 +1,39 @@
 //
    Created by Виктор on 9.10.2014 г..
-.jumbotron
-    | Produts here #{products}
-
+div.container
+    div.well
+        table.table.table-striped.table-hover
+            thead
+                tr
+                    th Name
+                    th Desription
+                    th Colors
+                    th Available Quantity
+                    th Price
+            tbody
+                tr(ng-repeat="product in products")
+                    td {{product.name}}
+                    td {{product.description}}
+                    td(ng-repeat="color in product.colors") 
+                        span {{color}} 
+                    td {{product.quantity}}
+                    td {{product.price | currency }}
+//div.container
+    div.well
+        table.table.table-striped.table-hover
+            thead
+                tr
+                    th #
+                    th Name
+                    th Desription
+                    th Colors
+                    th Available Quantity
+                    th Price
+            tbody
+                tr
+                    td 1
+                    td Code monkey t-shirt
+                    td Code Monkey
+                    td Green, Yellow, Red
+                    td 1
+                    td 12

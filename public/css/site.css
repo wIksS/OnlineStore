@@ -3,3 +3,17 @@
     color: grey;
     font-weight: normal;
 }
+
+.table {
+    font-size: 0.5em;
+    color: grey;
+    font-weight: normal;
+}
+
+.center, th{
+    text-align: center;
+}
+
+.table-container{
+    margin: 50px;
+}

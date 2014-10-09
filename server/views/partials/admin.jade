@@ -1,0 +1,23 @@
+//
+   Created by Виктор on 10.10.2014 г..
+
+
+table.table.table-striped.table-hover.center
+    thead
+        tr.center
+            th Name
+            th Description
+            th Quantity
+            th Price
+            th Colors
+            th Delete
+    tbody
+        each product in products
+            tr
+                td #{product.name}
+                td #{product.description}
+                td #{product.quantity}
+                td #{product.price}
+                td #{product.colors}
+                td
+                    button(ng-click="deleteProduct('#{product.id}')").btn.btn-primary delete

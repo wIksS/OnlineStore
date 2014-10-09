@@ -55,17 +55,23 @@ db.once('open', function (err) {
 });
 auth = require("./server/config/auth");
 
-function dbDependent(){
+function dbDependent() {
     require("./server/models/Product");
     require("./server/models/User");
     require("./server/config/passport");
     controllers = require("./server/controllers/index");
     //auth = require("./server/config/auth");
-    app.post("/register",controllers.users.createUser);
-    app.post("/user",auth.login);
-    app.put("/user",auth.logout);
+    app.post("/register", controllers.users.createUser);
+    app.post("/user", auth.login);
+    app.put("/user", auth.logout);
     app.get('/products',
         controllers.products.getAllProducts
+    );
+    app.delete('/products/:id',
+        controllers.products.deleteProduct
+    );
+    app.get('/admin',
+        controllers.products.getAdminProducts
     );
     app.get('*', function(req, res) {
         res.render('index', {
