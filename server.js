@@ -81,19 +81,10 @@ Message.remove({}).exec(function (err) {
     });
 });
 
-app.get('/products',function(req,res){
-    console.log(controllers);
-    res.render('partials/products',{
-        message:controllers.products.getAllProducts()
-    });
-});
-
-
-
-
+app.get('/api/prodcuts', controllers.products.getAllProducts);
 
 app.post('/create-item',auth.isAuthenticated,
-    auth.isInRole("admin"),
+    //auth.isInRole("admin"),
     //TODO where must I move this function ?
     function(req,res,next){
         req.body.colors=req.body.colors.split(",");
@@ -102,7 +93,7 @@ app.post('/create-item',auth.isAuthenticated,
         res.end();
     });
 app.get('/create-item',
-    auth.isInRole("admin"),
+   // auth.isInRole("admin"),
     //TODO where must I move this function ?
     function(req,res,next){
         res.sendFile(__dirname +"/server/views/partials/create-item.html")

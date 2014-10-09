@@ -24,8 +24,6 @@ module.exports = {
     },
     getAllProducts:function(req,res,next){
         Product.find({}).exec(function(err,data){
-//            if(err){
-//            }
             res.send(data);
         })
     }
