@@ -20,4 +20,4 @@ table.table.table-striped.table-hover.center
                 td #{product.price}
                 td #{product.colors}
                 td
-                    button(ng-click="deleteProduct(product._id)").btn.btn-primary delete
+                    button(ng-click="deleteProduct('#{product.id}')").btn.btn-primary delete

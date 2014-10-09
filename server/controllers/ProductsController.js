@@ -22,6 +22,13 @@ module.exports = {
             }
         });
     },
+    deleteProduct:function(req,res,next){
+        Product.remove({_id: req.params.id}).exec(function(err){
+            if(err) {
+                res.json(err);
+            }
+        });
+    },
     getAllProducts:function(req,res,next){
         Product.find({}).exec(function(err,data){
             console.log(data);
