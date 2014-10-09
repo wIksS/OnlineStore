@@ -3,12 +3,12 @@ app.factory('identity', function($cookieStore, UsersResource){
 
     var currentUser;
     return {
-        currentUser: function () {
+        getCurrentUser: function () {
             var savedUser = $cookieStore.get(cookieStorageUserKey);
             if(savedUser){
                 return savedUser;
             }
-
+            
             return currentUser;
         },
         setCurrentUser: function (user) {
@@ -22,10 +22,10 @@ app.factory('identity', function($cookieStore, UsersResource){
             currentUser = user;
         },
         isAuthenticated: function(){
-            return !!this.currentUser();
+            return !!this.getCurrentUser();
         },
         isAuthorizedForRole: function (role) {
-            return !!this.currentUser() && this.currentUser().roles.indexOf(role) > -1;
+            return !!this.getCurrentUser() && this.getCurrentUser().roles.indexOf(role) > -1;
         },
         isAdmin: function () {
             return this.isAuthorizedForRole('admin');

@@ -23,8 +23,13 @@ app.config(function ($routeProvider) {
         templateUrl: '/partials/home',
         controller: 'HomeCtrl'
     })
+<<<<<<< HEAD
     .when('/products', {
+        templateUrl: '/products',
+=======
+	.when('/products', {
         templateUrl: '/partials/products',
+>>>>>>> 29380c1e7d5fa7d5457e7a744482bcbfb48f595c
         controller: 'ProductsCtrl'
     })
     .when('/login', {
