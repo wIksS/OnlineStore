@@ -45,7 +45,8 @@ app.config(function ($routeProvider) {
         controller: 'UserListCtrl',
         resolve: routeUserChecks.adminRole
     }).when('/create-item', {
-        templateUrl: '/create-item'
+        templateUrl: '/create-item',
+        controller: 'CreateProductCtrl'
      })
     .otherwise({ redirectTo: '/' });
 });

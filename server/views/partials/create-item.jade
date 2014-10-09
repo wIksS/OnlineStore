@@ -1,0 +1,30 @@
+block content
+    .container
+        form.form-horizontal
+            fieldset
+                legend Create product
+                .form-group
+                    label.col-lg-2.control-label(for="product-name") Product name
+                    .col-lg-10
+                        input.form-control(type="text" id="product-name" ng-model="product.name" placeholder="Product name")
+                .form-group
+                    label.col-lg-2.control-label(for="product-description") Product description
+                    .col-lg-10
+                        textarea.form-control(rows="3" ng-model="product.description" id="product-description")
+                        span.help-block Please provide description for the item.
+                .form-group
+                    label.col-lg-2.control-label(for="product-quantity") Available in stock
+                    .col-lg-10
+                        input.form-control(type="number" id="product-quantity" ng-model="product.quantity")
+                .form-group
+                    label.col-lg-2.control-label(for="product-colors") Available product colors
+                    .col-lg-10
+                        textarea.form-control(rows="2" ng-model="product.colors" id="product-colors")
+                        span.help-block Please separate with "," and don't use spaces...
+                .form-group
+                    label.col-lg-2.control-label(for="product-price") Product price
+                    .col-lg-10
+                        input.form-control(type="number" id="product-price" ng-model="product.price")
+                .form-group
+                    .col-lg-10
+                        button.btn.btn-primary(ng-click="createProduct(product)") Create product
