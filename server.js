@@ -87,8 +87,6 @@ Message.remove({}).exec(function (err) {
     });
 });
 
-//app.get('/api/prodcuts', controllers.products.getAllProducts);
-
 app.post('/create-item',auth.isAuthenticated,
     //auth.isInRole("admin"),
     //TODO where must I move this function ?
@@ -97,13 +95,18 @@ app.post('/create-item',auth.isAuthenticated,
         console.log(req.body);
         controllers.products.createProduct(req,res,next)
         res.end();
-    });
+    }
+);
+
 app.get('/create-item',
    // auth.isInRole("admin"),
     //TODO where must I move this function ?
     function(req,res,next){
         res.sendFile(__dirname +"/server/views/partials/create-item.html")
-    });
+    }
+);
+
+//app.get('/api/products', controllers.products.getAllProducts);
 
 app.get('/partials/:partialName', function (req, res) {
     res.render('partials/' + req.params.partialName);
