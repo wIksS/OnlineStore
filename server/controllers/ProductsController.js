@@ -16,9 +16,9 @@ module.exports = {
             if(err){
                 console.log("Product cant be created : " + err);
                 res.status(400);
-                res.end({message:"The product cant be created. Please try with a different name."});
+                res.end();
             } else {
-                res.end({message :"Product created"});
+                res.end();
             }
         });
     },

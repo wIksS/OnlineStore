@@ -97,7 +97,8 @@ app.post('/create-item',auth.isAuthenticated,
     //TODO where must I move this function ?
     function(req,res,next){
         req.body.colors=req.body.colors.split(",");
-        controllers.prodcuts.createProduct(res.body)
+        console.log(req.body);
+        controllers.products.createProduct(req,res,next)
         res.end();
     });
 app.get('/create-item',

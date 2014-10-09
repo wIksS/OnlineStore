@@ -34,8 +34,7 @@ module.exports = {
     },
     isInRole: function(role) {
         return function(req, res, next) {
-            console.log("Checking role");
-            console.log(req.user);
+
             if (req.isAuthenticated() && req.user.role === role) {
                 next();
             }
