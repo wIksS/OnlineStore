@@ -24,7 +24,7 @@ app.config(function ($routeProvider) {
         controller: 'HomeCtrl'
     })
     .when('/products', {
-        templateUrl: '/partials/products',
+        templateUrl: '/products',
         controller: 'ProductsCtrl'
     })
     .when('/login', {

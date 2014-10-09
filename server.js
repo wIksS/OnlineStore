@@ -79,6 +79,13 @@ Message.remove({}).exec(function (err) {
     });
 });
 
+app.get('/products',function(req,res){
+    console.log(controllers);
+    res.render('partials/products',{
+        message:controllers.products.getAllProducts()
+    });
+});
+
 app.get('/partials/:partialName', function (req, res) {
     res.render('partials/' + req.params.partialName);
 });

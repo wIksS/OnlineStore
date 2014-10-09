@@ -6,5 +6,5 @@ var productsController = require('./ProductsController');
 
 module.exports = {
     users: usersController,
-    prodcuts:productsController
+    products:productsController
 };
