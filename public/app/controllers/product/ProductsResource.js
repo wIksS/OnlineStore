@@ -4,5 +4,5 @@
 app.factory('ProductsResource', function($resource) {
     var ProductsResource = $resource('api/products');
 
-    return CourseResource;
+    return ProductsResource;
 })
