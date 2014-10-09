@@ -8,15 +8,16 @@ module.exports = {
         console.log(req);
         var userData= req.body;
         userData.role="user";
+        console.log("---------------------");
         console.log(userData);
         var newUser = new User(userData);
         newUser.save(function(err,user){
             if(err){
                 console.log("User cant be created : " + err);
                 res.status(400);
-                res.end({message:"The user cant be created. Please try with a different name."});
+                res.end();
             } else {
-                res.end({message :"User created"});
+                res.end();
             }
         });
     },
