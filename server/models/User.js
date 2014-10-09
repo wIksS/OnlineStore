@@ -8,7 +8,9 @@ var userSchema = new mongoose.Schema({
     userName: {type: String, require: "{PATH} is required!",unique:true},
     firstName:{type: String, require: "{PATH} is required!"},
     lastName:{type: String, require: "{PATH} is required!"},
-    role:{type: String, require: "{PATH} is required!"},
+    role: { type: String, require: "{PATH} is required!" },
+    address: { type: Object },
+    billing: { type: Object },
     hashedPassword: { type: String, default: '', require: "{PATH} is required!" },
     salt: { type: String, default: '' , require: "{PATH} is required!"}
 });

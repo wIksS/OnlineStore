@@ -2,25 +2,64 @@
     div.well
         form.form-horizontal(name="profileForm")
             fieldset
-                legend Update profile
+                legend Update
                 div.form-group
                     label.col-md-2.control-label(for="first-name") 
                         | First name
                     div.col-md-10
-                        input#first-name.form-control(type="text", placeholder="First name", ng-model="user.firstName", name="firstName", required)
+                        input#first-name.form-control(type="text", placeholder="First name", ng-model="user.firstName", name="firstName")
                 div.form-group
                     label.col-md-2.control-label(for="last-name") 
                         | Last name
                     div.col-md-10
-                        input#last-name.form-control(type="text", placeholder="Last name", ng-model="user.lastName", name="lastName", required)
+                        input#last-name.form-control(type="text", placeholder="Last name", ng-model="user.lastName", name="lastName")
+            fieldset
+                legend Address
+                div.form-group
+                    label.col-md-2.control-label(for="country") 
+                        | Country
+                    div.col-md-10
+                        input#country.form-control(type="text", placeholder="Country", ng-model="user.address.country", name="country")
+                div.form-group
+                    label.col-md-2.control-label(for="city") 
+                        | City
+                    div.col-md-10
+                        input#city.form-control(type="text", placeholder="City", ng-model="user.address.city", name="city")
+                div.form-group
+                    label.col-md-2.control-label(for="street") 
+                        | Street address
+                    div.col-md-10
+                        input#street.form-control(type="text", placeholder="Street address", name="password", ng-model="user.address.street")
+                div.form-group
+                    label.col-md-2.control-label(for="zipCode") 
+                        | Zip Code
+                    div.col-md-2
+                        input#zipCode.form-control(type="text", placeholder="Zip Code", name="zipCode", ng-model="user.address.zipCode")
+            fieldset
+                legend Billing Information
+                div.form-group
+                    label.col-md-2.control-label(for="creditCard") 
+                        | Credit Card Number
+                    div.col-md-10
+                        input#creditCard.form-control(type="text", placeholder="Credit Card Number", ng-model="user.billing.creditCard", name="creditCard")
+                div.form-group
+                    label.col-md-2.control-label(for="csc") 
+                        | CSC
+                    div.col-md-2
+                        input#csc.form-control(type="text", placeholder="CSC", ng-model="user.billing.csc", name="csc")
+                div.form-group
+                    label.col-md-2.control-label(for="expirationDate") 
+                        | Expiration Date
+                    div.col-md-10
+                        input#expirationDate.form-control(type="date", placeholder="Expiration Date", name="password", ng-model="user.billing.expirationDate")
                 div.form-group
                     label.col-md-2.control-label(for="password") 
                         | Password
                     div.col-md-10
-                        input#password.form-control(type="password", placeholder="Password", name="password", ng-model="user.password")
+                        input#password.form-control(type="password", placeholder="Password", name="password", ng-model="user.password" required)
                 div.form-group
                     div.col-lg-10.col-lg-offset-2
                         button.btn.btn-primary(ng-click="update(user)", ng-disabled="profileForm.$invalid") 
                             | Update
-                        a.btn.btn-primary(href="/") 
+                        a.btn.btn-default(href="/") 
                             | Cancel
