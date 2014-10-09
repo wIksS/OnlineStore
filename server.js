@@ -2,6 +2,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     passport = require("passport"),
     cookieParser = require('cookie-parser'),
+    session = require("express-session"),
     mongoose = require('mongoose');
 
 
@@ -18,7 +19,18 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(passport.initialize());
-app.use(passport.session({ secret: 'this is the store secret' }));
+
+app.use(session({
+    name: "connect.sid",
+    resave: true,
+    saveUninitialized:true,
+    secret: 'this is the store secret',
+    cookie:
+    { secure: true }
+    }
+));
+app.use(passport.session(
+    { secret: 'this is the store secret' }));
 app.use(express.static(__dirname + '/public'));
 
 mongoose.connect('mongodb://localhost/onlinestore');

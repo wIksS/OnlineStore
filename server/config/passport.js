@@ -15,8 +15,7 @@ var User = require("mongoose").model("User");
                 console.log('Error loading user: ' + err);
                 return;
             }
-            console.log(user);
-            console.log(user.authenticate(password));
+
             if (user && user.authenticate(password)) {
                 return done(null, user);
             }
@@ -27,12 +26,14 @@ var User = require("mongoose").model("User");
     }));
 
     passport.serializeUser(function(user, done) {
+        console.log("User serialized.");
         if (user) {
             return done(null, user._id);
         }
     });
 
     passport.deserializeUser(function(id, done) {
+        console.log("User de serialized.");
         User.findOne({_id: id}).exec(function(err, user) {
             if (err) {
                 console.log('Error loading user: ' + err);

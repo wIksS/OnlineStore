@@ -12,30 +12,26 @@ module.exports = {
         var newUser = new User(userData);
         newUser.save(function(err,user){
             if(err){
-                //TODO Handle user creation error
                 console.log("User cant be created : " + err);
                 res.status(400);
-                res.end()
+                res.end({message:"The user cant be created. Please try with a different name."});
             } else {
-                //TODO handle user creation
-                console.log("User created : " + user);
-                res.end();
+                res.end({message :"User created"});
             }
         });
     },
     getAllClients:function(req,res,next){
         User.find({}).where({role:"Client"}).exec(function(err,data){
-            if(err){
-                console.log("Can't get users.")
-            }
+//            if(err){
+//            }
             res.send(data);
         })
     },
     getAllUsers:function(req,res,next){
         User.find({}).exec(function(err,data){
-            if(err){
-                console.log("Can't get users.")
-            }
+//            if(err){
+//                console.log("Can't get users.")
+//            }
             res.send(data);
         })
     }
