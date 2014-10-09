@@ -7,7 +7,7 @@ var express = require('express'),
 var controllers;
 
 var env = process.env.NODE_ENV || 'development';
-var port = 3030;
+var port = process.env.PORT || 3030;
 
 var app = express();
 
@@ -33,7 +33,13 @@ app.use(passport.session(
     { secret: 'this is the store secret' }));
 app.use(express.static(__dirname + '/public'));
 
-mongoose.connect('mongodb://localhost/onlinestore');
+if (env == 'development') {
+    mongoose.connect('mongodb://localhost/onlinestore');
+}
+else {
+    mongoose.connect('mongodb://admin:peshoebog@ds063859.mongolab.com:63859/onlinestore');
+}
+
 var db = mongoose.connection;
 
 db.once('open', function (err) {

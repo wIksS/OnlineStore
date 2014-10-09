@@ -10,6 +10,10 @@
     "type": "git",
     "url": "https://github.com/wIksS/OnlineStore.git"
   },
+    "engines": {
+        "node": "0.10.x",
+        "npm": "1.4.x"
+    },
   "author": "Team Nemesis",
   "license": "MIT",
   "bugs": {
