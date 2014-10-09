@@ -46,6 +46,7 @@ db.once('open', function (err) {
     console.log('Database up and running...');
 });
 function dbDependent(){
+    require("./server/models/Product");
     require("./server/models/User");
     require("./server/config/passport");
     controllers = require("./server/controllers/index");
