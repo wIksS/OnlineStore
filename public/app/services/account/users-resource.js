@@ -1,7 +1,7 @@
 ﻿'use strict'
 
 app.factory('UsersResource', function ($resource) {
-    var url = '/api/users/:id';     //TODO change?
+    var url = '/api/users/:id';
 
     var UsersResource = $resource(url, { _id: '@id' }, { update: { method: 'PUT', isArray: false } });
     
