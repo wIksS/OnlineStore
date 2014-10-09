@@ -12,7 +12,13 @@ module.exports = {
             }
             req.logIn(user, function(err) {
                 if (err) return next(err);
-                res.send({success: true});
+                res.send({
+                    success: true,
+                    firstName:user.firstName,
+                    lastName:user.lastName,
+                    userName:user.userName,
+                    role:user.role
+                });
             });
         },{session:true});
 

@@ -36,7 +36,7 @@ app.factory('auth', function ($q, $http, identity, UsersResource) {
                 if (response.success) {
                     var user = new UsersResource();
                     angular.extend(user, response.user);
-                    identity.setCurrentUser(user);
+                    identity.setCurrentUser(response);
                     identity.currentUser = user;
                     console.log(identity.currentUser);
                     deferred.resolve(true);
