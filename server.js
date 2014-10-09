@@ -2,6 +2,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     passport = require("passport"),
     cookieParser = require('cookie-parser'),
+    session = require("express-session"),
     mongoose = require('mongoose');
 
 
@@ -18,6 +19,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(passport.initialize());
+
+app.use(session({ secret: 'this is the store secret' }))
 app.use(passport.session({ secret: 'this is the store secret' }));
 app.use(express.static(__dirname + '/public'));
 
