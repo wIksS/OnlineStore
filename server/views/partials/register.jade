@@ -1,6 +1,6 @@
 ﻿div.container
     div.well
-        form.form-horizontal(name="registerForm")
+        form.form-horizontal(name="registerForm", method="POST", action="/register")
             fieldset
                 legend
                     | Register
@@ -8,17 +8,17 @@
                     label.col-lg-2.control-label(for="first-name")
                         | First name
                     div.col-lg-10
-                        input.form-control#first-name(type="text", ng-model="user.firstName", placeholder="First Name", required)
+                        input.form-control#first-name(type="text", ng-model="user.firstName", placeholder="First name", required)
                div.form-group
                     label.col-lg-2.control-label(for="last-name")
                         | Last name
                     div.col-lg-10
-                        input.form-control#last-name(type="text", ng-model="user.lastName", placeholder="Last Name", required)
+                        input.form-control#last-name(type="text", ng-model="user.lastName", placeholder="Last name", required)
                div.form-group
                     label.col-lg-2.control-label(for="username")
                         | Username
                     div.col-lg-10
-                        input.form-control#username(type="text", ng-model="user.username", placeholder="Username", required)
+                        input.form-control#username(type="text", ng-model="user.userName", placeholder="Username", required)
                div.form-group
                     label.col-lg-2.control-label(for="password")
                         | Password

@@ -1,8 +1,23 @@
 'use strict';
 
-var app = angular.module('app', ['ngRoute', 'ngCookies', 'ngResource']);
+var app = angular.module('app', ['ngRoute', 'ngCookies', 'ngResource'])
+.value('toastr', toastr);
 
 app.config(function ($routeProvider) {
+    
+    var routeUserChecks = {
+        adminRole: {
+            authenticate: function (auth) {
+                return auth.isAuthorizedForRole('admin');
+            }
+        },
+        authenticated: {
+            authenticate: function (auth) {
+                return auth.isAuthenticated();
+            }
+        }
+    };
+
     $routeProvider
     .when('/', {
         templateUrl: '/partials/home',
@@ -18,21 +33,21 @@ app.config(function ($routeProvider) {
     })
     .when('/profile', {
         templateUrl: '/partials/profile',
-        controller: 'ProfileCtrl'
+        controller: 'ProfileCtrl',
+        resolve: routeUserChecks.authenticated
     })
     .when('/users', {
         templateUrl: '/partials/users-list',
-        controller: 'UserListCtrl'
-    });
-})
-.value('toastr', toastr);
+        controller: 'UserListCtrl',
+        resolve: routeUserChecks.adminRole
+    })
+    .otherwise({ redirectTo: '/' });
+});
 
-//app.controller('HomeCtrl',
-//    function HomeCtrl($scope) {
-//        $scope.greet = 'Hi from Angular!';
-//});
-
-//app.controller('LoginCtrl',
-//    function HomeCtrl($scope) {
-//    //$scope.greet = 'Hi from Angular!';
-//});
+app.run(function ($rootScope, $location) {
+    $rootScope.$on('$routeChangeError', function (ev, current, previous, rejection) {
+        if (rejection === 'not authorized') {
+            $location.path('/');
+        }
+    })
+});

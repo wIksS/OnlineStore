@@ -14,14 +14,15 @@ html
                         div.container
                             div.navbar-header
                                 a.navbar-brand(href="#/")
-                                    | *Name* Online Shop
+                                    | T-# Online Store
                                 button.navbar-toggle(type="button", data-toggle="collapse", data-target="#navbar-main")
-                                    //span.icon-bar
                             div.navbar-collapse.collapse.navbar-responsive-collapse
                                 ul.nav.navbar-nav
                                     li
                                         a(href="#/")
                                             | Home
+                                form.navbar-form.navbar-left.col-lg-10
+                                    input.form-control(type="text", placeholder="Search", ng-model="search")
                                 ul.nav.navbar-nav.navbar-right(ng-controller="LoginCtrl")
                                     li(ng-show="loggedIn")
                                         a(href="#/login")

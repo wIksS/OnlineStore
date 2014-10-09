@@ -35,4 +35,12 @@ app.controller('LoginCtrl',
             return false;
         }
     }
+
+    $scope.isAdmin = function () {
+        if (identity.isAdmin()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 });

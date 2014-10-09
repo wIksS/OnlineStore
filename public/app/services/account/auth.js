@@ -1,9 +1,8 @@
 app.factory('auth', function ($q, $http, identity, UsersResource) {
-
     return {
         signup: function (user) {
             var deferred = $q.defer();
-
+            console.log(user)
             var currentUser = new UsersResource(user);
             user.$save().then(function () {
                 identity.setCurrentUser(currentUser);
@@ -33,7 +32,7 @@ app.factory('auth', function ($q, $http, identity, UsersResource) {
         login: function (user) {
             var deferred = $q.defer();
 
-            $http.post('/login', user).success(function (response) {
+            $http.post('/user', user).success(function (response) {
                 if (response.success) {
                     var user = new UsersResource();
                     angular.extend(user, response.user);
@@ -51,7 +50,7 @@ app.factory('auth', function ($q, $http, identity, UsersResource) {
         logout: function () {
             var deferred = $q.defer();
 
-            $http.post('/logout').success(function () {
+            $http.put('/user').success(function () {
                 identity.setCurrentUser(undefined);
                 deferred.resolve(true);
             });
