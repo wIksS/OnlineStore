@@ -7,8 +7,11 @@ app.controller('LoginCtrl',
     $scope.login = function (user) {
         auth.login(user).then(function (success) {
             if (success) {
-                $scope.user = identity.currentUser();
+                $scope.user = identity.currentUser;
+                //console.log($scope.user.firstName);
+                //console.log(identity.currentUser)
                 notifier.success('Successful login!');
+                $location.path("/");
             }
             else {
                 notifier.error('Not valid input!');
@@ -20,14 +23,15 @@ app.controller('LoginCtrl',
         auth.logout().then(function () {
             notifier.success('Successful logout!');
             if ($scope.user) {
-                $scope.user.username = '';
+                $scope.user.userName = '';
                 $scope.user.password = '';
             }
-            
+            console.log(identity.isAuthenticated())
             $location.path('/');
         });
     }
-
+    
+    $scope.show = identity.isAuthenticated();
     $scope.loggedIn = function () {
         if (identity.isAuthenticated()) {
             return true;

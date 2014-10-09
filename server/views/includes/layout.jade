@@ -16,27 +16,25 @@ html
                                 a.navbar-brand(href="#/")
                                     | T-# Online Store
                                 button.navbar-toggle(type="button", data-toggle="collapse", data-target="#navbar-main")
-                            div.navbar-collapse.collapse.navbar-responsive-collapse
+                            div.navbar-collapse.collapse.navbar-responsive-collapse(ng-controller="LoginCtrl")
                                 ul.nav.navbar-nav
-                                    li
-                                        a(href="#/")
-                                            | Home
                                     li
                                         a(href="#/products")
                                             | Products
                                 form.navbar-form.navbar-left.col-lg-10
                                     input.form-control(type="text", placeholder="Search", ng-model="search")
-                                ul.nav.navbar-nav.navbar-right(ng-controller="LoginCtrl")
-                                    li(ng-show="loggedIn")
+                                ul.nav.navbar-nav.navbar-right(ng-hide="loggedIn()")
+                                    li
                                         a(href="#/login")
                                             | Log In
-                                    li(ng-show="loggedIn")
+                                    li
                                         a(href="#/register")
                                             | Register
-                                    li(ng-hide="loggedIn")
+                                ul.nav.navbar-nav.navbar-right(ng-show="loggedIn()")
+                                    li
                                         a(href="#/profile")
-                                            | Hello, {{ identity.getCurrentUser().userName }}
-                                    li(ng-hide="loggedIn", ng-click="logout()")
+                                            | Hello, {{ identity.getCurrentUser().firstName }}
+                                    li(ng-click="logout()")
                                         a(href="#/")
                                             | Log Out
 
