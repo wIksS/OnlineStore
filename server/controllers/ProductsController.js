@@ -27,5 +27,11 @@ module.exports = {
             console.log(data);
             res.render(__dirname + "/../views/partials/products",{products:data});
         })
+    },
+    getAdminProducts:function(req,res,next){
+        Product.find({}).exec(function(err,data){
+            console.log(data);
+            res.render(__dirname + "/../views/partials/admin",{products:data});
+        })
     }
 };

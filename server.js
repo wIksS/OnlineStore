@@ -65,6 +65,9 @@ function dbDependent(){
     app.get('/products',
         controllers.products.getAllProducts
     );
+    app.get('/admin',
+        controllers.products.getAdminProducts
+    );
     app.get('*', function(req, res) {
         res.render('index', {
             message: messageFromDb
