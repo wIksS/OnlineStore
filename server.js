@@ -81,7 +81,7 @@ Message.remove({}).exec(function (err) {
     });
 });
 
-app.get('/api/prodcuts', controllers.products.getAllProducts);
+//app.get('/api/prodcuts', controllers.products.getAllProducts);
 
 app.post('/create-item',auth.isAuthenticated,
     //auth.isInRole("admin"),
