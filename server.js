@@ -7,7 +7,7 @@ var express = require('express'),
 var controllers;
 
 var env = process.env.NODE_ENV || 'development';
-var port = 3030;
+var port = process.env.PORT || 3030;
 
 var app = express();
 
@@ -33,7 +33,13 @@ app.use(passport.session(
     { secret: 'this is the store secret' }));
 app.use(express.static(__dirname + '/public'));
 
-mongoose.connect('mongodb://localhost/onlinestore');
+if (env == 'development') {
+    mongoose.connect('mongodb://localhost/onlinestore');
+}
+else {
+    mongoose.connect('mongodb://admin:peshoebog@ds063859.mongolab.com:63859/onlinestore');
+}
+
 var db = mongoose.connection;
 
 db.once('open', function (err) {
@@ -81,8 +87,6 @@ Message.remove({}).exec(function (err) {
     });
 });
 
-//app.get('/api/prodcuts', controllers.products.getAllProducts);
-
 app.post('/create-item',auth.isAuthenticated,
     //auth.isInRole("admin"),
     //TODO where must I move this function ?
@@ -91,13 +95,18 @@ app.post('/create-item',auth.isAuthenticated,
         console.log(req.body);
         controllers.products.createProduct(req,res,next)
         res.end();
-    });
+    }
+);
+
 app.get('/create-item',
    // auth.isInRole("admin"),
     //TODO where must I move this function ?
     function(req,res,next){
         res.sendFile(__dirname +"/server/views/partials/create-item.html")
-    });
+    }
+);
+
+//app.get('/api/products', controllers.products.getAllProducts);
 
 app.get('/partials/:partialName', function (req, res) {
     res.render('partials/' + req.params.partialName);
