@@ -11,13 +11,16 @@ div.container
                     th Available Quantity
                     th Price
             tbody
-                tr(ng-repeat="product in products")
-                    td {{product.name}}
-                    td {{product.description}}
-                    td(ng-repeat="color in product.colors") 
-                        span {{color}} 
-                    td {{product.quantity}}
-                    td {{product.price | currency }}
+                each product in products
+                    tr
+                        td= product.name
+                        td= product.description
+                        td
+                            each color in product.colors
+                                span= color
+                                br
+                        td= product.quantity
+                        td= product.price
 //div.container
     div.well
         table.table.table-striped.table-hover
