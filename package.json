@@ -10,10 +10,10 @@
     "type": "git",
     "url": "https://github.com/wIksS/OnlineStore.git"
   },
-    "engines": {
-        "node": "0.10.x",
-        "npm": "1.4.x"
-    },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.4.x"
+  },
   "author": "Team Nemesis",
   "license": "MIT",
   "bugs": {
@@ -32,6 +32,7 @@
     "nodemon": "^1.2.1",
     "passport": "^0.2.1",
     "passport-http-bearer": "^1.0.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "connect-busboy": "0.0.2"
   }
 }

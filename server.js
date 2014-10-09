@@ -3,7 +3,8 @@ var express = require('express'),
     passport = require("passport"),
     cookieParser = require('cookie-parser'),
     session = require("cookie-session"),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    busboy = require('connect-busboy');
 var controllers;
 
 var env = process.env.NODE_ENV || 'development';
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(busboy({ immediate: false }));
 app.use(cookieParser());
 
 app.use(session({
@@ -99,8 +101,6 @@ app.post('/create-item',auth.isAuthenticated,
     //auth.isInRole("admin"),
     //TODO where must I move this function ?
     function(req,res,next){
-        req.body.colors=req.body.colors.split(",");
-        console.log(req.body);
         controllers.products.createProduct(req,res,next)
         res.end();
     }
