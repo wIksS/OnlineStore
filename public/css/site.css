@@ -20,3 +20,73 @@
 .help-block {
     font-size: 0.4em;
 }
+
+.product {
+    display: inline-block;
+    width: 340px;
+    font-size: 0.8em;
+    margin-right: 10px;
+    vertical-align: top;
+    color: #2fa4e7;
+}
+
+#main-home .product span {
+     color: #2fa4e7;
+}
+
+.product-details {
+    font-size: 0.8em;
+}
+/*---------------------------------------------*/
+.product-details .panel-body {
+    font-size: 0.7em;
+    color: grey;
+    background-image: url('imgs/1-l.jpg');
+    background-repeat: no-repeat;
+    height: 500px;
+    padding-left: 450px;
+}
+
+.product-details img {
+    float: left;
+}
+
+#quantity {
+    width: 50px;
+}
+
+#add-to-basket {
+    position: relative;
+    margin-top: 20px;
+}
+
+#pr1 {
+    background-image: url('imgs/1.jpg');
+    background-repeat: no-repeat;
+    height:360px;
+}
+#pr2 {
+    background-image: url('imgs/2.jpg');
+    background-repeat: no-repeat;
+        height:360px;
+}
+#pr3 {
+    background-image: url('imgs/3.jpg');
+    background-repeat: no-repeat;
+        height:360px;
+}
+#pr4 {
+    background-image: url('imgs/4.jpg');
+    background-repeat: no-repeat;
+        height:360px;
+}
+#pr5 {
+    background-image: url('imgs/5.jpg');
+    background-repeat: no-repeat;
+        height:360px;
+}
+#pr6 {
+    background-image: url('imgs/6.jpg');
+    background-repeat: no-repeat;
+        height:360px;
+}

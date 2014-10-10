@@ -1,0 +1,32 @@
+div.container
+    div.well
+        div.panel.panel-default.product-details
+            div.panel-heading 
+                span Code Monkey
+            div.panel-body
+                //img(src="1.jpg")
+                div.col-lg-10
+                    p
+                        | Code Monkey T-shirt
+                div.col-lg-10
+                    p
+                        strong
+                            | Colors: 
+                        span
+                            | red, blue, green, black
+                div.col-lg-10
+                    p
+                        strong
+                            | Price: 
+                        span
+                            $28.99
+                div.col-lg-10
+                    p
+                        strong.pull-left
+                            | Quantity: 
+                        span.col-lg-2
+                            input.form-control.pull-right#quantity(type="number", min="1", ng-model="product.quantity")
+                div.col-lg-10
+                    p
+                        a.btn.btn-primary#add-to-basket
+                            | Add To Basket
